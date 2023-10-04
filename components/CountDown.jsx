@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from "react";
 import moment from "moment";
-
+// timings.Isha
 function CountDown({ timings, onDataReceived }) {
     const [nextPrayerIndex, setNextPrayerIndex] = useState();
     const [CountDownTime, setCountDownTime] = useState()
@@ -18,11 +18,21 @@ function CountDown({ timings, onDataReceived }) {
         let interval = setInterval(() => {
             CountDownToNextPrayer()
         }, 1000);
-        setupNextPray()
         return () => {
             clearInterval(interval)
         }
-    }, [timings, nextPrayerIndex])
+    }, [timings,nextPrayerIndex,momentNow])
+    
+    useEffect(()=>{
+        setupNextPray()
+    },[timings,nextPrayerIndex])
+
+    useEffect(()=>{
+        if(CountDownTime == "0:0:0"){
+            console.log("Reach Zero")
+            window.location.reload();
+        }
+    },[CountDownTime])
 
 
     // Handling the Next prayer
@@ -55,7 +65,6 @@ function CountDown({ timings, onDataReceived }) {
         const NextPryerTime = prayingArr[nextPrayerIndex]
         const nextPrayerTimeMoment = moment(NextPryerTime, "hh:mm");
         let remainingTime = nextPrayerTimeMoment.diff(currentTime)
-        const durationRemainingTime = moment.duration(remainingTime)
 
         if (remainingTime < 0) {
             const midnightDiff = 
@@ -65,17 +74,14 @@ function CountDown({ timings, onDataReceived }) {
             const totalDiffernce = midnightDiff + fajrToMidnightDiff;
             remainingTime = totalDiffernce;
         } 
+        const durationRemainingTime = moment.duration(remainingTime)
+
         setCountDownTime(
             `${durationRemainingTime.hours()}:${durationRemainingTime.minutes()}:${durationRemainingTime.seconds()}`
         )
+        console.log(remainingTime)
     }
 
-    useEffect(()=>{
-        if(CountDownTime === "0:0:0"){
-            console.log("Reach Zero")
-            window.location.reload();
-        }
-    },[CountDownTime])
 
     return (
         <div >
