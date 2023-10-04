@@ -23,7 +23,9 @@ const Head = ({date,city,timings}) => {
                         {city}</h1>
                 </div>
             <div className="w-[100%] bg-white h-[1px] md:hidden"></div>
-                <div className='flex flex-col gap-4'>
+
+                <div className='flex flex-col gap-4 
+                justify-center items-center  '>
                     <span className='text-white	text-sm md:text-xl '>
                         UNTIL | 
                         <span className='text-green-400 ms-2'>
@@ -36,6 +38,7 @@ const Head = ({date,city,timings}) => {
                         onDataReceived={handleChildData}/>
                     </h1>
                 </div>
+
             </div>
             <div className="w-[100%] bg-white h-[1px]"></div>
         </div>

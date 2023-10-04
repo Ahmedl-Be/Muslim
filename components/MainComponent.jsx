@@ -25,7 +25,7 @@ export default  function MainComponent() {
     },[selectedOption])
 
     return (
-            <div className="ml-[10%] mr-[10%] mt-16 flex flex-col
+            <div className="ml-[10%] mr-[10%] md:mt-16 mt-4 flex flex-col
             gap-10 h-screen md:h-auto">
                 <Head date={date} city={selectedOption}
                 timings={timings}

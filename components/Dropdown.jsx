@@ -19,7 +19,7 @@ const Dropdown = ({ state, onStateChange }) => {
     };
     return (
         <div className="flex flex-col gap-2 justify-center relative 
-        items-center ">
+        items-center mb-10">
             <button
                 className="
                 order-solid border-2
