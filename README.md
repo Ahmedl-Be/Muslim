@@ -21,7 +21,6 @@ To get started with the project, follow the instructions below:
 2. Navigate to the project directory:
    `````
    cd prayers-timings
-   ```
 
 3. Install the dependencies:
    ````
