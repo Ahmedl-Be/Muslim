@@ -1,11 +1,14 @@
 "use client"
 import { useEffect, useState } from "react";
 import moment from "moment";
-// timings.Isha
+import momentTimezone from "moment-timezone";
+
 function CountDown({ timings, onDataReceived }) {
     const [nextPrayerIndex, setNextPrayerIndex] = useState();
     const [CountDownTime, setCountDownTime] = useState()
-    const momentNow = moment();
+    // const momentNow = moment();
+    const momentNow = momentTimezone.tz(moment(),"Africa/Cairo");
+
     const prayingTime = [
         { Fajr: timings.Fajr },
         { Dhuhr: timings.Dhuhr },
@@ -29,7 +32,7 @@ function CountDown({ timings, onDataReceived }) {
 
     useEffect(()=>{
         if(CountDownTime == "0:0:0"){
-            console.log("Reach Zero")
+            // console.log("Reach Zero")
             window.location.reload();
         }
     },[CountDownTime])
@@ -63,7 +66,8 @@ function CountDown({ timings, onDataReceived }) {
     const CountDownToNextPrayer = () => {
         const currentTime = moment();
         const NextPryerTime = prayingArr[nextPrayerIndex]
-        const nextPrayerTimeMoment = moment(NextPryerTime, "hh:mm");
+        const nextPrayerTimeMoment =
+        momentTimezone.tz(NextPryerTime, "hh:mm", "Africa/Cairo");
         let remainingTime = nextPrayerTimeMoment.diff(currentTime)
 
         if (remainingTime < 0) {
@@ -79,9 +83,8 @@ function CountDown({ timings, onDataReceived }) {
         setCountDownTime(
             `${durationRemainingTime.hours()}:${durationRemainingTime.minutes()}:${durationRemainingTime.seconds()}`
         )
-        console.log(remainingTime)
+        // console.log(remainingTime)
     }
-
 
     return (
         <div >
