@@ -15,7 +15,7 @@ To get started with the project, follow the instructions below:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/Ahmedl-Be/prayers-timings.git
+   git clone https://github.com/Ahmedl-Be/Muslim.git
    ```
 
 2. Navigate to the project directory:
