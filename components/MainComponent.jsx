@@ -7,7 +7,7 @@ import axios from "axios"
 
 export default  function MainComponent() {
     const [timings,setTimimgs] = useState({})
-    const [date,setDate] = useState("")
+    const [arDate,setArDate] = useState("")
     const [selectedOption, setSelectedOption] = useState("Cairo");
     const handleStateChange = (newState) => {
         setSelectedOption(newState);
@@ -17,17 +17,20 @@ export default  function MainComponent() {
     `https://api.aladhan.com/v1/timingsByCity?city=${selectedOption}&country=Egy&method=8`
         );
         setTimimgs(res.data.data.timings)
-        setDate(res.data.data.date.readable)
+        const arMonth =  res.data.data.date.hijri.month.ar
+        const arDay = res.data.data.date.hijri.day
+        const arYear = res.data.data.date.hijri.year
+            setArDate(`${arYear} ( ${arMonth} ) ${arDay}`)
     }
     
     useEffect(()=>{
         getTimings()
     },[selectedOption])
-
+    console.log(arDate)
     return (
             <div className="ml-[10%] mr-[10%] md:mt-16 mt-4 flex flex-col
             gap-10 h-screen md:h-auto">
-                <Head date={date} city={selectedOption}
+                <Head date={arDate} city={selectedOption}
                 timings={timings}
                 />
                 <Cart timings={timings}/>
