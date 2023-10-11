@@ -11,6 +11,7 @@ function CountDown({ timings, onDataReceived }) {
 
     const prayingTime = [
         { Fajr: timings.Fajr },
+        { Sunrise: timings.Sunrise },
         { Dhuhr: timings.Dhuhr },
         { Asr: timings.Asr },
         { Maghrib: timings.Maghrib },

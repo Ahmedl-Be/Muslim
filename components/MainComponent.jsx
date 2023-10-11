@@ -26,7 +26,7 @@ export default  function MainComponent() {
     useEffect(()=>{
         getTimings()
     },[selectedOption])
-    console.log(arDate)
+    // console.log(timings)
     return (
             <div className="ml-[10%] mr-[10%] md:mt-16 mt-4 flex flex-col
             gap-10 h-screen md:h-auto">
